@@ -1,3 +1,4 @@
+
 package taller5;
 
 import javax.swing.JOptionPane;
@@ -8,21 +9,53 @@ import java.io.IOException;
 /**
  * Ejercicio 5 - Clase Estudiante + JOptionPane + BufferedReader
  *
- * El main usa la clase Estudiante (Ejercicio5 combina ambas formas de E/S):
+ * El main usa la clase Estudiante:
  *  - nombre y edad con JOptionPane
  *  - notas con BufferedReader
  */
 public class Ejercicio5 {
 
     public static void main(String[] args) throws IOException {
-        // TODO:
-        // 1. Pedir nombre con JOptionPane.showInputDialog
-        // 2. Pedir edad con JOptionPane.showInputDialog + Integer.parseInt
-        // 3. Leer tres notas con BufferedReader + Double.parseDouble
-        // 4. Crear objeto Estudiante con el constructor
-        // 5. Mostrar con JOptionPane.showMessageDialog EXACTO:
-        //      Nombre: [nombre]
-        //      Edad: [edad]
-        //      Promedio: X.XX
+
+        String nombre = JOptionPane.showInputDialog(
+            "Ingrese el nombre del estudiante:"
+        );
+
+        String entradaEdad = JOptionPane.showInputDialog(
+            "Ingrese la edad del estudiante:"
+        );
+
+        int edad = Integer.parseInt(entradaEdad);
+
+        BufferedReader br = new BufferedReader(
+            new InputStreamReader(System.in)
+        );
+
+        System.out.print("Ingrese la primera nota: ");
+        double nota1 = Double.parseDouble(br.readLine());
+
+        System.out.print("Ingrese la segunda nota: ");
+        double nota2 = Double.parseDouble(br.readLine());
+
+        System.out.print("Ingrese la tercera nota: ");
+        double nota3 = Double.parseDouble(br.readLine());
+
+        Estudiante estudiante = new Estudiante(
+            nombre,
+            edad,
+            nota1,
+            nota2,
+            nota3
+        );
+
+        String resultado = String.format(
+            java.util.Locale.US,
+            "Nombre: %s%nEdad: %d%nPromedio: %.2f",
+            estudiante.getNombre(),
+            estudiante.getEdad(),
+            estudiante.getPromedio()
+        );
+
+        JOptionPane.showMessageDialog(null, resultado);
     }
 }
